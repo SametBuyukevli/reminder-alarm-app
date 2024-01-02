@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">mobilFinalDeneme</string>
+
+    <string-array name="alarm_sounds">
+        <item>Bell Sound</item>
+        <item>Beep Sound</item>
+        <item>Alarm Sound</item>
+        <!-- Müzik seçeneklerini buraya ekleyebilirsiniz -->
+    </string-array>
+
+    <string-array name="hatirlatmadakika">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <!-- Müzik seçeneklerini buraya ekleyebilirsiniz -->
+    </string-array>
+
 </resources>

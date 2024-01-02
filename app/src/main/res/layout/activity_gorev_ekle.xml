@@ -1,4 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,91 +11,129 @@
         android:id="@+id/reminderTime"
         android:layout_margin="10dp"
         android:textSize="24sp"
+        android:paddingBottom="10dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Time" />
 
-    <Switch
-        android:id="@+id/switchDateTime"
-        android:layout_width="388dp"
-        android:layout_height="80dp"
-        android:layout_margin="10dp"
-        android:text="Select Date and Time"
-        android:textSize="24sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:paddingLeft="90dp"
+            android:textSize="24sp"
+            android:layout_height="wrap_content"
+            android:text="Tarih"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:paddingLeft="150dp"
+            android:text="Saat" />
+
+    </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layoutDateTime"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
 
-        <!-- layout for date picker -->
-
+        android:layout_height="wrap_content">
         <DatePicker
             android:id="@+id/datePicker"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:calendarViewShown="false"
+            android:datePickerDialogTheme="@style/DatePickerDialogTheme"
             android:datePickerMode="spinner"
-            android:spinnersShown="true"
-             />
+            android:spinnersShown="true" />
 
         <!-- time picker-->
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
+            android:orientation="horizontal">
 
             <NumberPicker
-                android:layout_margin="2dp"
+                android:id="@+id/numPickerHour"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/numPickerHour" />
+                android:layout_margin="2dp"
+                android:layout_weight="1" />
 
             <NumberPicker
-                android:layout_margin="2dp"
+                android:id="@+id/numPickerMinute"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/numPickerMinute" />
+                android:layout_margin="2dp"
+                android:layout_weight="1" />
+
 
 
         </LinearLayout>
-        <LinearLayout
+
+
+        <!---->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Select Alarm Sound"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinnerAlarmSound"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:entries="@array/alarm_sounds" />
 
-            <TextView
-                android:layout_margin="10dp"
-                android:textSize="20sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select Alarm Sound" />
+    </LinearLayout>
 
-            <Spinner
-                android:id="@+id/spinnerAlarmSound"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                 />
+    <EditText
+        android:id="@+id/Aciklama"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/tv_border"
+        android:layout_margin="10dp"
+        android:hint="Açıklama..."
+        android:padding="10dp"/>
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="14dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hatirlatici Ekle"/>
 
-        </LinearLayout>
+        <Spinner
+            android:id="@+id/hatirlaticiSec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/hatirlatmadakika"/>
+
     </LinearLayout>
 
     <Button
-        android:id="@+id/btGetValue"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="30dp"
         android:text="Get Reminder Time"
         android:textSize="20sp" />
 
