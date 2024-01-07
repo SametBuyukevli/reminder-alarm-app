@@ -28,12 +28,21 @@ class AlarmDeleteAdapter(private var alarms: List<AlarmDb>, context: Context) :
         }
 
         private fun getMonthName(month: Int): String {
-            val monthNames = arrayOf(
-                "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
-                "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"
-            )
-            val adjustedMonth = if (month in 1..12) month else 1
-            return monthNames[adjustedMonth]
+            return when (month) {
+                0 -> "Ocak"
+                1 -> "Şubat"
+                2 -> "Mart"
+                3 -> "Nisan"
+                4 -> "Mayıs"
+                5 -> "Haziran"
+                6 -> "Temmuz"
+                7 -> "Ağustos"
+                8 -> "Eylül"
+                9 -> "Ekim"
+                10 -> "Kasım"
+                11 -> "Aralık"
+                else -> "Bilinmeyen Ay"
+            }
         }
     }
 
@@ -57,6 +66,7 @@ class AlarmDeleteAdapter(private var alarms: List<AlarmDb>, context: Context) :
 
     fun refreshData(newAlarm:List<AlarmDb>){
         alarms = newAlarm
+        //Veri seti değişikliğini RecyclerView'a bildir
         notifyDataSetChanged()
     }
 }

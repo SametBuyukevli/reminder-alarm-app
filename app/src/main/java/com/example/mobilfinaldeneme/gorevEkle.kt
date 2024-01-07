@@ -2,8 +2,10 @@ package com.example.mobilfinaldeneme
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
@@ -16,6 +18,7 @@ class gorevEkle : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityGorevEkleBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         db = AlarmDatabaseHelper(this)
 
@@ -51,23 +54,25 @@ class gorevEkle : AppCompatActivity() {
             spinner2.adapter = adapter
         }
 
-        var min: Int = 0
-        var sec: Int = 0
+        var hours: Int = 0
+        var minut: Int = 0
 
         binding.numPickerHour.setOnValueChangedListener { numberPicker, i, i2 ->
-            min = numberPicker.value
+            hours = numberPicker.value
         }
         binding.numPickerMinute.setOnValueChangedListener { numberPicker, i, i2 ->
-            sec = numberPicker.value
+            minut = numberPicker.value
         }
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{
             val day = binding.datePicker.dayOfMonth
             val month = binding.datePicker.month
+            Log.d("eklenenAy", "Eklenen ay ekleme kisminda: $month") // Log mesajı olarak hangi ayın eklendiğini gösterir
             val year = binding.datePicker.year
-            val hour = min
-            val minute = sec
+            val hour = hours
+            val minute = minut
+            Log.d("eklenenSaat","eklenen saat: ${hours} :${minut}")
             val sound = spinner1.selectedItem.toString()
             val explanation = explantionText.text.toString()
             val reminder = spinner2.selectedItem.toString()
@@ -78,7 +83,4 @@ class gorevEkle : AppCompatActivity() {
 
         }
     }
-
-
-
 }
