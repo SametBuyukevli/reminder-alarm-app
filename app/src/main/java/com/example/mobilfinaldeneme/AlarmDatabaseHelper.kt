@@ -92,6 +92,33 @@ class AlarmDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         db.close()
         return alarmList
     }
+    fun deleteAlarm(alarmId: Int){
+        val db = writableDatabase
+        val whereClause = "$COLUMN_ID = ?"
+        val whereArgs = arrayOf(alarmId.toString())
+        db.delete(TABLE_NAME,whereClause,whereArgs)
+        db.close()
+    }
+    fun getAlarmByID(alarmID:Int):AlarmDb{
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $alarmID"
+        val cursor = db.rawQuery(query,null)
+        cursor.moveToFirst()
+
+        val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+        val day = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_DAY))
+        val month = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONTH))
+        val year = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_YEAR))
+        val hour = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_HOUR))
+        val minute = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MINUTE))
+        val sound = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_SOUND))
+        val explanation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXPLANATION))
+        val reminder = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_REMINDER))
+
+        cursor.close()
+        db.close()
+        return AlarmDb(id,day,month,year,hour,minute,sound,explanation,reminder)
+    }
 }
 
 

@@ -28,10 +28,15 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, gorevEkle::class.java)
             startActivity(intent)
         }
+
+        binding.editButton.setOnClickListener(){
+            val intent = Intent(this, gorevSilMain::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onResume() {
-        super.onResume()
         super.onResume()
         val updatedAlarms = db.getAllAlarms()
         Log.d("MainActivity", "Number of alarms: ${updatedAlarms.size}")

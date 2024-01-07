@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MobilFinalDeneme"
         tools:targetApi="31">
         <activity
+            android:name=".gorevSilMain"
+            android:exported="false" />
+        <activity
             android:name=".gorevEkle"
             android:exported="false" />
         <activity

@@ -21,11 +21,11 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <ImageButton
-            android:id="@+id/edit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/check_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="start"
-            android:background="@drawable/baseline_edit_note_24"
+            android:background="@drawable/baseline_check_24"
             tools:layout_editor_absoluteX="347dp"
             tools:layout_editor_absoluteY="6dp">
 
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Ana Sayfa"
+            android:text="Duzenle"
             android:textColor="@color/white"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="40dp"
@@ -49,7 +49,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
 
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerView1"
         android:layout_width="411dp"
         android:layout_height="671dp"
         android:layout_marginTop="65dp"
@@ -59,19 +59,7 @@
 
 
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/extended_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:clickable="true"
-        android:text="Gorev Ekle"
-        app:icon="@drawable/baseline_playlist_add_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
 
-    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
