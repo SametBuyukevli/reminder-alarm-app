@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Hatirlatma"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="16dp">
+
+        </TextView>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/alarmlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        tools:layout_editor_absoluteX="0dp">
+
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/AlarmDurdurBtn"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        tools:layout_editor_absoluteX="15dp">
+
+
+        <LinearLayout
+
+            android:id="@+id/textLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:id="@+id/saat"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="26sp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                android:text="09:45"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/baslik"
+                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:text="TARİH"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/aciklama"
+                android:layout_marginTop="30dp"
+                android:textSize="16sp"
+                android:paddingLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="8"
+                android:text="u kodları com.example.mobilfinaldeneme paketi içindeki dosyalara eklemeniz gerekmektedir.
+
+AlarmAdapter sınıfı, alarm verilerini RecyclerView içinde listeleyen ve her bir alarm için bir AlarmManager ayarlayan bir adaptördür. Bu sınıfı AlarmAdapter.kt adlı bir dosyaya ekleyebilirsiniz.
+
+AlarmReceiver sınıfı ise bir BroadcastReceiver'dır ve AlarmManager tarafından tetiklenen alarm olaylarını işler. Bu sınıfı AlarmReceiver.kt adlı bir dosyaya ekleyebilirsiniz.
+
+Kodları ilgili dosyalara yerleştirdikten sonra, bu sınıfları kullanabilir ve alarmı ayarlayabilirsiniz. Umarım bu size yardımcı olur! Başka bir sorunuz varsa sormaktan çekinmeyin."
+                android:textColor="#675B5B">
+
+            </TextView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/AlarmDurdurBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:text="Durdur"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="557dp" />
+
+
+</LinearLayout>

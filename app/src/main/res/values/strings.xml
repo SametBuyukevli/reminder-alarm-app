@@ -2,6 +2,7 @@
     <string name="app_name">mobilFinalDeneme</string>
 
     <string-array name="alarm_sounds">
+        <item>ringtone</item>
         <item>Bell Sound</item>
         <item>Beep Sound</item>
         <item>Alarm Sound</item>

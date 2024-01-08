@@ -3,6 +3,8 @@ package com.example.mobilfinaldeneme
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
@@ -30,13 +32,24 @@ class gorevEkle : AppCompatActivity() {
 
         //alarm seçmek için spinner
         val spinner1: Spinner = findViewById(R.id.spinnerAlarmSound)
-        ArrayAdapter.createFromResource(
+        val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.alarm_sounds,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner1.adapter = adapter
+        }
+
+        spinner1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedSound = parent?.getItemAtPosition(position).toString()
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Hiçbir şey seçilmediğinde yapılacak işlemler
+            }
         }
 
         //hatırlatıcı seçmek için spinner
@@ -52,8 +65,6 @@ class gorevEkle : AppCompatActivity() {
 
 
 
-
-        //geçmiş saati seçemesin buraya bir kontrol ekel seçerse hata versin
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{

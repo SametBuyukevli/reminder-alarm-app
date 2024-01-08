@@ -17,8 +17,15 @@
         <receiver
             android:name=".AlarmReceiver"
             android:enabled="true"
-            android:exported="false" />
-
+            android:exported="false" >
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+            <action android:name="android.intent.action.REBOOT" />
+        </intent-filter>
+        </receiver>
+        <activity
+            android:name=".HatirlatmaEkrani"
+            android:label="Hatirlatma Ekrani" />
         <activity
             android:name=".gorevSilMain"
             android:exported="false" />
