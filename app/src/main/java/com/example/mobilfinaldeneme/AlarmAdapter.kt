@@ -99,7 +99,6 @@ class AlarmAdapter(private var alarms:List<AlarmDb>, private val context:Context
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         // Eğer alarm daha önce planlanmamışsa veya tarihi geçmişse planla
-        //if (!alarm.isScheduled(context) || alarm.isPast()) {
         // alarm zamani ayarlamak icin calendar sinifini kullandik
         // Eğer alarm daha önce planlanmamışsa veya tarihi geçmişse planla
         if (!alarm.isScheduled(context) || alarm.isPast()) {

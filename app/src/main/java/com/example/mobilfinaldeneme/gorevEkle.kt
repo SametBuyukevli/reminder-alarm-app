@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import com.example.mobilfinaldeneme.databinding.ActivityGorevEkleBinding
+import java.util.Calendar
 
 class gorevEkle : AppCompatActivity() {
     private lateinit var binding: ActivityGorevEkleBinding
@@ -25,11 +26,6 @@ class gorevEkle : AppCompatActivity() {
 
 
         val explantionText = findViewById<EditText>(R.id.Aciklama)
-        binding.numPickerHour.minValue = 0
-        binding.numPickerHour.maxValue = 24
-
-        binding.numPickerMinute.minValue = 0
-        binding.numPickerMinute.maxValue = 59
 
 
         //alarm seçmek için spinner
@@ -54,15 +50,10 @@ class gorevEkle : AppCompatActivity() {
             spinner2.adapter = adapter
         }
 
-        var hours: Int = 0
-        var minut: Int = 0
 
-        binding.numPickerHour.setOnValueChangedListener { numberPicker, i, i2 ->
-            hours = numberPicker.value
-        }
-        binding.numPickerMinute.setOnValueChangedListener { numberPicker, i, i2 ->
-            minut = numberPicker.value
-        }
+
+
+        //geçmiş saati seçemesin buraya bir kontrol ekel seçerse hata versin
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{
@@ -70,9 +61,9 @@ class gorevEkle : AppCompatActivity() {
             val month = binding.datePicker.month
             Log.d("eklenenAy", "Eklenen ay ekleme kisminda: $month") // Log mesajı olarak hangi ayın eklendiğini gösterir
             val year = binding.datePicker.year
-            val hour = hours
-            val minute = minut
-            Log.d("eklenenSaat","eklenen saat: ${hours} :${minut}")
+            val hour = binding.timePicker.hour
+            val minute = binding.timePicker.minute
+            Log.d("eklenenSaat","eklenen saat: ${hour} :${minute}")
             val sound = spinner1.selectedItem.toString()
             val explanation = explantionText.text.toString()
             val reminder = spinner2.selectedItem.toString()

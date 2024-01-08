@@ -4,13 +4,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.widget.CalendarView
 import android.widget.Toast
 import java.util.Calendar
-import java.util.TimeZone
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent) {
+        //bu kısımda hatırlatıcı alarm çalmadan önce bi bildirim gelicek
         if (context != null && intent != null) {
             val alarmId = intent.getIntExtra("ALARM_ID", -1)
             if (alarmId != -1) {

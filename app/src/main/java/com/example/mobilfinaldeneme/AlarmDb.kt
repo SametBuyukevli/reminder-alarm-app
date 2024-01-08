@@ -30,7 +30,7 @@ data class AlarmDb(
     fun isPast(): Boolean {
         val currentCalendar = Calendar.getInstance()
         val alarmCalendar = Calendar.getInstance().apply {
-            set(year, month , day, hour, minute, 0)
+            set(year, month - 1, day, hour, minute, 10)
         }
         return currentCalendar.timeInMillis > alarmCalendar.timeInMillis
     }
