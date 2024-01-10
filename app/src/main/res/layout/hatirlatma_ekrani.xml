@@ -94,12 +94,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="8"
                 android:text="u kodları com.example.mobilfinaldeneme paketi içindeki dosyalara eklemeniz gerekmektedir.
-
-AlarmAdapter sınıfı, alarm verilerini RecyclerView içinde listeleyen ve her bir alarm için bir AlarmManager ayarlayan bir adaptördür. Bu sınıfı AlarmAdapter.kt adlı bir dosyaya ekleyebilirsiniz.
-
-AlarmReceiver sınıfı ise bir BroadcastReceiver'dır ve AlarmManager tarafından tetiklenen alarm olaylarını işler. Bu sınıfı AlarmReceiver.kt adlı bir dosyaya ekleyebilirsiniz.
-
-Kodları ilgili dosyalara yerleştirdikten sonra, bu sınıfları kullanabilir ve alarmı ayarlayabilirsiniz. Umarım bu size yardımcı olur! Başka bir sorunuz varsa sormaktan çekinmeyin."
+bu sınıfları kullanabilir ve alarmı ayarlayabilirsiniz. Umarım bu size yardımcı olur! Başka bir sorunuz varsa sormaktan çekinmeyin."
                 android:textColor="#675B5B">
 
             </TextView>

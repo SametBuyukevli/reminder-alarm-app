@@ -13,7 +13,6 @@ class AlarmReceiver : BroadcastReceiver() {
         if (context != null && intent != null) {
             val alarmId = intent.getIntExtra("ALARM_ID", -1)
             if (alarmId != -1) {
-
                 val db = AlarmDatabaseHelper(context)
                 val alarm = db.getAlarmByID(alarmId)
                 val calendar = Calendar.getInstance()
@@ -30,6 +29,9 @@ class AlarmReceiver : BroadcastReceiver() {
                     )
                     return
                 } else {
+                    val serviceIntent = Intent(context, AlarmService::class.java)
+                    context.startService(serviceIntent)
+
                     Log.d(
                         "AlarmReceiver",
                         "Çalan alarm ==> tarih: ${alarm.day}/${alarm.month + 1}/${alarm.year} saat: ${alarm.hour}:${alarm.minute} sistemin saati: ${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
@@ -40,10 +42,12 @@ class AlarmReceiver : BroadcastReceiver() {
                         Toast.LENGTH_SHORT
                     ).show()
 
+
                     val intent = Intent(context, HatirlatmaEkrani::class.java)
                     intent.putExtra("ALARM_ID", alarmId)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                     context.startActivity(intent)
+
                 }
             }
         }
