@@ -95,6 +95,8 @@ class HatirlatmaEkrani : AppCompatActivity(), SensorEventListener {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 mediaPlayer.stop()
+                val stopServiceIntent = Intent(applicationContext, AlarmService::class.java)
+                applicationContext.stopService(stopServiceIntent)
                 db.deleteAlarm(alarmId)
                 finish()
 

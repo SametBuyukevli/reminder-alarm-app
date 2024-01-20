@@ -47,9 +47,6 @@ class AlarmService : Service() {
 
     }
 
-
-
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val intentToYourActivity = Intent(this, HatirlatmaEkrani::class.java)
         intentToYourActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
