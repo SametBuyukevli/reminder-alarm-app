@@ -24,9 +24,6 @@ class gorevEkle : AppCompatActivity() {
 
 
         db = AlarmDatabaseHelper(this)
-
-
-
         val explantionText = findViewById<EditText>(R.id.Aciklama)
 
 
@@ -48,11 +45,11 @@ class gorevEkle : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Hiçbir şey seçilmediğinde yapılacak işlemler
+
             }
         }
 
-        //hatırlatıcı seçmek için spinner
+        //hatırlatıcı zamani seçmek için spinner
         val spinner2: Spinner = findViewById(R.id.hatirlaticiSec)
         ArrayAdapter.createFromResource(
             this,
@@ -63,10 +60,8 @@ class gorevEkle : AppCompatActivity() {
             spinner2.adapter = adapter
         }
 
-
-
-
         val saveButton = findViewById<Button>(R.id.saveButton)
+        // saveButton basildiginda secilen tarih saat aciklama ... tum bilgileri al
         saveButton.setOnClickListener{
             val day = binding.datePicker.dayOfMonth
             val month = binding.datePicker.month
@@ -76,11 +71,14 @@ class gorevEkle : AppCompatActivity() {
             val minute = binding.timePicker.minute
             Log.d("eklenenSaat","eklenen saat: ${hour} :${minute}")
             val sound = spinner1.selectedItem.toString()
-            val explanation = explantionText.text.toString()
+            val explanation = explantionText.text.toString()    //aciklama
             val reminder = spinner2.selectedItem.toString()
+            // Yeni bir AlarmDb nesnesi oluştur
             val alarm = AlarmDb(0,day,month,year,hour,minute,sound,explanation,reminder)
+            // Veritabanına yeni alarmı ekle
             db.insertAlarm(alarm)
             finish()
+            // Alarm eklendiginde bir bildirim gosterir
             Toast.makeText(this,"Alarm Added",Toast.LENGTH_SHORT).show()
 
         }

@@ -43,7 +43,7 @@ class AlarmDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         //db degeri null degilse execSQL icerisindeki kodu calistir
         db?.execSQL(createTableQuery)
     }
-
+    // bu kısım tablo eğer yoksa yeninden oluşturma kontorl kısmı
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, NewVersion: Int) {
         val dropTableQuery = "DROP TABLE IF EXISTS $TABLE_NAME"
         db?.execSQL(dropTableQuery)
@@ -67,7 +67,7 @@ class AlarmDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         db.insert(TABLE_NAME, null, values)
         db.close()
     }
-
+    //eklenen tüm alarmları çekme
     fun getAllAlarms(): List<AlarmDb> {
         val alarmList = mutableListOf<AlarmDb>()
         val db = readableDatabase
@@ -92,6 +92,7 @@ class AlarmDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         db.close()
         return alarmList
     }
+    //alarm silme
     fun deleteAlarm(alarmId: Int){
         val db = writableDatabase
         val whereClause = "$COLUMN_ID = ?"
@@ -99,9 +100,11 @@ class AlarmDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         db.delete(TABLE_NAME,whereClause,whereArgs)
         db.close()
     }
+    //Veritabanından belirli bir alarmı ID'ye göre getirir
     fun getAlarmByID(alarmID:Int):AlarmDb{
         val db = readableDatabase
         val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $alarmID"
+        // yazılan sorguyu çalıştır ve sonuçları al
         val cursor = db.rawQuery(query,null)
         cursor.moveToFirst()
 

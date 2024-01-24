@@ -22,6 +22,7 @@ class gorevSilMain : AppCompatActivity(){
 
         db = AlarmDatabaseHelper(this)
         alarmAdapter = AlarmDeleteAdapter(db.getAllAlarms(),this)
+        // Silmek istedigimiz alarmlarin recyclerview icerisine cek
         binding.recyclerView1.layoutManager = LinearLayoutManager(this)
         binding.recyclerView1.adapter = alarmAdapter
 

@@ -47,14 +47,17 @@ class AlarmDeleteAdapter(private var alarms: List<AlarmDb>, context: Context) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmViewHolder {
+        // yeni bir view oluştuğunda çağrılır
         val view = LayoutInflater.from(parent.context).inflate(R.layout.alarm_item_delete, parent,false)
         return AlarmViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: AlarmViewHolder, position: Int) {
+        // ViewHolder ın bağlandığı pozisyondaki verileri görüntüler
         val alarm = alarms[position]
         holder.bind(alarm)
 
+        // Silme butonuna tıklanınca çağrılacak olan işlem
         holder.deleteButton.setOnClickListener{
             db.deleteAlarm(alarm.id)
             refreshData(db.getAllAlarms())
@@ -63,10 +66,10 @@ class AlarmDeleteAdapter(private var alarms: List<AlarmDb>, context: Context) :
     }
 
     override fun getItemCount(): Int = alarms.size
-
+    // Veri seti güncellendiğinde çağrılacak olan metod
     fun refreshData(newAlarm:List<AlarmDb>){
         alarms = newAlarm
-        //Veri seti değişikliğini RecyclerView'a bildir
+        //Veri seti değişikliğini RecyclerView a bildir
         notifyDataSetChanged()
     }
 }

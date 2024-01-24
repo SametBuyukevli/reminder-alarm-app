@@ -26,8 +26,6 @@ class AlarmAdapter(private var alarms:List<AlarmDb>, private val context:Context
         val timeTextView: TextView = itemView.findViewById(R.id.saat)
         val explanationTextView: TextView = itemView.findViewById(R.id.aciklamaa)
 
-        //val editButton : ImageView = itemView.findViewById(R.id.edit_button)
-
         fun bind(alarmData: AlarmDb) {
 
             // Gün, ay ve yılı tek bir dize olarak birleştir
@@ -62,14 +60,16 @@ class AlarmAdapter(private var alarms:List<AlarmDb>, private val context:Context
         }
     }
 
+    // Yeni bir View oluşturulduğunda çağrılır
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.alarm_item, parent, false)
         return AlarmViewHolder(view)
     }
 
     override fun getItemCount(): Int = alarms.size
-
+    //veri kümseinde toplam item sayısını döndürür
     override fun onBindViewHolder(holder: AlarmViewHolder, position: Int) {
+        // kayıt yapılan alarmları görüntüler
         val alarm = alarms[position]
         holder.bind(alarm)
         Log.d(
@@ -107,8 +107,6 @@ class AlarmAdapter(private var alarms:List<AlarmDb>, private val context:Context
                 set(alarm.year, alarm.month, alarm.day, alarm.hour, alarm.minute, 0)
             }
 
-
-            //alarmManager.cancel(pendingIntent)
             // API >= 19 olan cihazlar için setExact, API < 19 için set kullan
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 alarmManager.setExact(

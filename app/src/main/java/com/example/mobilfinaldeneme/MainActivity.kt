@@ -19,24 +19,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         db = AlarmDatabaseHelper(this)
-        alarmAdapter = AlarmAdapter(db.getAllAlarms(),this)
 
+        alarmAdapter = AlarmAdapter(db.getAllAlarms(),this)
+        // olusturulan alarmlarin anasayfada recyclerview icerisinde gozukmesi
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = alarmAdapter
 
+        //Hatirlatici ekleme sayfasina gecmek icin bir button
         binding.extendedFab.setOnClickListener {
             val intent = Intent(this, gorevEkle::class.java)
             startActivity(intent)
         }
-
+        //Hatirlatici silme sayfasina gecmek icin bir button
         binding.editButton.setOnClickListener(){
             val intent = Intent(this, gorevSilMain::class.java)
             startActivity(intent)
         }
 
     }
-
-    //?????
+    // Aktivite yeniden başlatıldığında
     override fun onResume() {
         super.onResume()
         val updatedAlarms = db.getAllAlarms()

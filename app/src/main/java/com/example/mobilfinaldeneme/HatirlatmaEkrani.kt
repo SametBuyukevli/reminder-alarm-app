@@ -33,25 +33,28 @@ class HatirlatmaEkrani : AppCompatActivity(), SensorEventListener {
 
         alarmId = intent.getIntExtra("ALARM_ID", -1)
         if (alarmId != -1) {
-
+            // Db den sirasi gelen alarmi al
             val alarm = db.getAlarmByID(alarmId)
-            // Perform necessary actions using alarm information
+            // hatirlatici bilgilerini siradaki id hangisi ise onu al
             binding.baslik.text = "${alarm.day}/${alarm.month + 1}/${alarm.year}"
             binding.saat.text = "${alarm.hour}:${alarm.minute}"
             binding.aciklama.text = alarm.explanation
             alarmSound = alarm.sound
         }
-
+        //alarm sesi ringtone ise
         if (alarmSound == "ringtone") {
+            // Raw klasorunden ringtone adindaki ses dosyasini mediaplayere ata
             mediaPlayer = MediaPlayer.create(this, R.raw.ringtone)
             mediaPlayer.setOnPreparedListener {
+                // Oynatmaya basla
                 mediaPlayer.start()
             }
             mediaPlayer.setOnCompletionListener {
+                // Medya oynatıcıyı serbest bırak
                 mediaPlayer.release()
             }
         }
-
+        //Alarma caldiginda alarmi kapatmak icin button
         binding.AlarmDurdurBtn.setOnClickListener() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -68,41 +71,41 @@ class HatirlatmaEkrani : AppCompatActivity(), SensorEventListener {
 
     override fun onResume() {
         super.onResume()
+        //hareket sensorune aktiviteyi kaydet
         sensorManager.registerListener(this, sensorShake, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
     override fun onPause() {
         super.onPause()
+        //hareket sensorunden aktiviteyi kaldir
         sensorManager.unregisterListener(this)
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        // Do nothing
     }
 
+    //alarm caldiginda telefon sallandigi zaman kapanir
     override fun onSensorChanged(event: SensorEvent?) {
         val db: AlarmDatabaseHelper by lazy { AlarmDatabaseHelper(this) }
-
+        // Eğer olay varsa ve sensör tipi İvmeölçer se devam et
         if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
             val x = event.values[0]
             val y = event.values[1]
             val z = event.values[2]
 
             val acceleration = Math.sqrt((x * x + y * y + z * z).toDouble())
-
+            // Eğer ivme 12'den büyükse, alarmı kapanir
             if (acceleration > 12) {
                 Toast.makeText(this, "Ses Kapatıldı!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 mediaPlayer.stop()
+                //arkaplanda servisi durdurur
                 val stopServiceIntent = Intent(applicationContext, AlarmService::class.java)
                 applicationContext.stopService(stopServiceIntent)
                 db.deleteAlarm(alarmId)
                 finish()
-
             }
-
-
         }
     }
 

@@ -3,6 +3,8 @@ package com.example.mobilfinaldeneme
 import android.content.Context
 import java.util.Calendar
 
+//Alarm database temel özelliklerini içerir
+
 data class AlarmDb(
     val id:Int,
     val day: Int,
@@ -19,10 +21,6 @@ data class AlarmDb(
     fun isScheduled(context: Context): Boolean {
         val dbHelper = AlarmDatabaseHelper(context)
         val alarm = dbHelper.getAlarmByID(id)
-        // Burada gerçek kontrolü yapmalısınız.
-        // Örneğin, veritabanınızda bu alarmın bir planlanma durumu tutuluyorsa,
-        // bu durumu kontrol edebilirsiniz. Örneğin:
-        // return alarm.isScheduledInDatabase()
         return false
     }
 
